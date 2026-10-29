@@ -5,7 +5,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Layout;
 using Avalonia.Media;
 
-namespace ChessAvalonia;
+namespace Schach;
 
 public sealed class MainWindow : Window
 {

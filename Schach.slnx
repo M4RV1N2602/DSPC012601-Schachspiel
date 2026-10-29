@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="Schach.Desktop/Schach.Desktop.csproj" />
+  <Project Path="Schach/Schach.csproj" />
+</Solution>

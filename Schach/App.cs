@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
 
-namespace ChessAvalonia;
+namespace Schach;
 
 public sealed class App : Application
 {

@@ -1,4 +1,4 @@
-namespace ChessAvalonia;
+namespace Schach;
 
 internal enum PieceType
 {

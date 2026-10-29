@@ -1,6 +1,7 @@
+using System;
 using Avalonia;
 
-namespace ChessAvalonia;
+namespace Schach.Desktop;
 
 internal static class Program
 {
