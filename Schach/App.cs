@@ -15,6 +15,11 @@ public sealed class App : Application
             RequestedThemeVariant = ThemeVariant.Light;
             desktop.MainWindow = new MainWindow();
         }
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
+        {
+            RequestedThemeVariant = ThemeVariant.Light;
+            singleViewPlatform.MainView = new MainView();
+        }
         base.OnFrameworkInitializationCompleted();
     }
 }
