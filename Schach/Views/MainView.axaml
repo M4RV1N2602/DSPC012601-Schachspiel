@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Schach.Views.MainView">
+    <Grid Margin="24" ColumnDefinitions="*,280">
+        <Grid x:Name="Board"
+              Width="560"
+              Height="560"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1" Margin="24,0,0,0" Spacing="14">
+            <TextBlock x:Name="Status" FontSize="18" FontWeight="SemiBold" />
+            <TextBlock Text="Zugliste" FontSize="16" FontWeight="Bold" />
+            <ScrollViewer Height="420">
+                <TextBlock x:Name="Moves" TextWrapping="Wrap" FontSize="14" />
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button Click="NewGame" Content="Neues Spiel" />
+                <Button Click="SaveGameClick" Content="Speichern" />
+                <Button Click="LoadGameClick" Content="Laden" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

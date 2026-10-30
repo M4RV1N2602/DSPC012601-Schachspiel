@@ -10,4 +10,9 @@
     <PackageReference Include="Avalonia"/>
     <PackageReference Include="Avalonia.Themes.Fluent"/>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\MainWindow.axaml.cs">
+      <DependentUpon>MainWindow.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
