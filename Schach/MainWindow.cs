@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Platform.Storage;
 
 namespace Schach;
 
@@ -85,15 +86,36 @@ public sealed class MainWindow : Window
     };
     private async Task SaveGame()
     {
-        var dlg = new SaveFileDialog { Title = "Partie speichern", DefaultExtension = "json", Filters = { new FileDialogFilter { Name = "Schachpartie", Extensions = { "json" } } } };
-        var path = await dlg.ShowAsync(this); if (path is null) return;
-        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(_game.History));
+        var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Partie speichern",
+            SuggestedFileName = "schachpartie.json",
+            DefaultExtension = "json",
+            FileTypeChoices = [new FilePickerFileType("Schachpartie") { Patterns = ["*.json"] }]
+        });
+        if (file is null) return;
+
+        await using var stream = await file.OpenWriteAsync();
+        await JsonSerializer.SerializeAsync(stream, _game.History);
     }
+
     private async Task LoadGame()
     {
-        var dlg = new OpenFileDialog { Title = "Partie laden", AllowMultiple = false, Filters = { new FileDialogFilter { Name = "Schachpartie", Extensions = { "json" } } } };
-        var paths = await dlg.ShowAsync(this); if (paths is not { Length: > 0 }) return;
-        try { _game.Load(JsonSerializer.Deserialize<List<string>>(await File.ReadAllTextAsync(paths[0])) ?? []); _selected = null; Refresh(); }
+        var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Partie laden",
+            AllowMultiple = false,
+            FileTypeFilter = [new FilePickerFileType("Schachpartie") { Patterns = ["*.json"] }]
+        });
+        if (files.Count == 0) return;
+
+        try
+        {
+            await using var stream = await files[0].OpenReadAsync();
+            _game.Load(await JsonSerializer.DeserializeAsync<List<string>>(stream) ?? []);
+            _selected = null;
+            Refresh();
+        }
         catch (Exception e) { await new Window { Title = "Fehler", Width = 400, Height = 120, Content = new TextBlock { Text = $"Partie konnte nicht geladen werden: {e.Message}", Margin = new Thickness(16) } }.ShowDialog(this); }
     }
 }
