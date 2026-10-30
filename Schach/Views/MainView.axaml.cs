@@ -32,6 +32,8 @@ public partial class MainView : UserControl
                 Background = new SolidColorBrush(Color.Parse(((r + c) % 2 == 0) ? "#F0D9B5" : "#B58863")),
                 Child = new TextBlock
                 {
+                    FontFamily = (Application.Current?.Resources["Merida"] as FontFamily)
+                        ?? throw new InvalidOperationException("The Merida font resource is not available."),
                     FontSize = 40,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center

@@ -11,6 +11,9 @@
     <PackageReference Include="Avalonia.Themes.Fluent"/>
   </ItemGroup>
   <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Views\MainWindow.axaml.cs">
       <DependentUpon>MainWindow.axaml</DependentUpon>
     </Compile>
