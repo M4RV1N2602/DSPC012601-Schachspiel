@@ -5,10 +5,12 @@
         See https://docs.avaloniaui.net/docs/guides/platforms/platform-specific-code/dotnet for more details.-->
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <AssemblyName>SchachDesktopApp</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia.Desktop"/>
+        <PackageReference Include="Avalonia.Wayland" />
     </ItemGroup>
 
     <ItemGroup>
