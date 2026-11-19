@@ -7,8 +7,8 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia"/>
-    <PackageReference Include="Avalonia.Themes.Fluent"/>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
@@ -17,5 +17,8 @@
     <Compile Update="Views\MainWindow.axaml.cs">
       <DependentUpon>MainWindow.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Schach.Tests" />
   </ItemGroup>
 </Project>
